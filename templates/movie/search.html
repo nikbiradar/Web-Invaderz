@@ -1,0 +1,54 @@
+{% extends "base/base.html" %}
+
+
+{% block start %}
+    
+    <div class="whole">
+        <div class="third-section">
+            <div class="left-part">
+                <div>
+                    <h2 style="border-bottom: 1px solid blue;">Search Results for {{search}}</h2>
+                    <div>
+                        {%if movies%}
+                        {% for movie in movies%}
+                        <div class="related-movie">
+                            <div class="related-movie-image">
+                                <a href="{% url 'get_movie' movie.slug %}">
+                                    <img src="{{movie.title_image}}" alt=""
+                                    width="100">
+                                </a>
+                            </div>
+                            <div style="width: 150px;">
+                                <a href="{% url 'get_movie' movie.slug %}">
+                                    <h6>{{movie.movie_name}}</h6>
+                                </a>
+                                <p class="related-movie-p">{{movie.release_year}}</p>
+                                <a href="" class="related-movie-a">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black"
+                                        class="bi bi-plus" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        {%endfor%}
+                        {%else%}
+                            <center><h1>No results found!</h1></center>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    
+
+
+    <div class="footer">
+        <p>Created by Team Web Invaderz&trade;</p>
+        <p style="margin-top: -20;">&copy;Copyright, 2022</p>
+    </div>
+    </div>
+{%endblock%}

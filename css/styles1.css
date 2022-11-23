@@ -1,0 +1,152 @@
+.third-section{
+    display:flex;
+    justify-content: space-between;
+    padding: 15px 15%;
+    background-color: rgba(255, 255, 255, 0.794);
+}
+
+.left-part{
+    flex: 3
+}
+
+.image{
+    display: inline-block;
+    padding: 0.5% 2%;
+}
+/* 
+.cast{
+    padding: 0.5% 2%;
+} */
+
+.actor{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(231, 224, 224, 0.948);
+    padding: 2%;
+    margin: 0.5% 1.5%;
+    border-radius: 50px;
+}
+
+.castimage{
+    display: inline;
+    margin-right: 10;
+}
+
+td.attrib{
+    font-weight: bold;
+}
+
+.content-meta.info {
+    display: table;
+    width: 100%;
+    margin: 10px 0 15px;
+}
+
+.content-meta.info .meta-row {
+    display: table-row;
+    width: 100%;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.content-meta.info .meta-row .meta-label, .content-meta.info .meta-row .meta-value {
+    display: table-cell;
+    min-height: 1px;
+    padding: 0 10px;
+    position: relative;
+    vertical-align: top;
+}
+
+.subtle {
+    color: var(--gray);
+}
+
+.content-meta.info .meta-row .meta-value.genre {
+    text-transform: capitalize;
+}
+
+.user-reviews{
+    margin-bottom: 10px;
+}
+
+.review{
+    border: 1px solid yellowgreen;
+    border-radius: 20px;
+}
+.review-header{
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+.review-rate{
+    width: 2.9em;
+    height: 2.9em;
+    border-radius: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(169, 184, 119);
+    margin-right: 9px;
+}
+
+.review-name{
+    border-bottom: 1px solid orangered;
+}
+
+.review-content{
+    padding:10px;
+}
+
+.footer{
+    margin-top: 10px;
+    padding: 12 0;
+    background-color: darkgray;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.right-part{
+    padding-left: 5%;
+    flex:1;
+}
+
+.related-movies-list{
+    display: inline-block;
+}
+
+.related-movie{
+    display: inline-flex;
+    flex-direction: row;
+    padding: 10px 10px;
+}
+
+.related-movie-image{
+    margin-right: 10px;
+}
+
+.related-movie-p{
+    margin-top: -10;
+    font-size: 14;
+    color: rgb(150, 138, 167);
+}
+
+.related-movie-a{
+    margin-top: -15;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(134, 135, 131);
+    margin-right: 9px;
+}
+
+.related-movie-a:hover{
+    background-color: rgb(115, 149, 180);
+}
