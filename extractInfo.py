@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-url = 'https://www.imdb.com/search/title/?groups=top_250&sort=user_rating'
+
+url = 'https://www.imdb.com/search/title/?groups=top_250&sort=user_rating,desc&start=1&ref_=adv_nxt&count=250'
 response = requests.get(url)
 soup = BeautifulSoup(response.content,'html.parser')
 
