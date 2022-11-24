@@ -9,6 +9,10 @@ soup = BeautifulSoup(response.content,'html.parser')
 
 movie_divs = soup.select('div.lister-item.mode-advanced')
 
+#Added New
+links = [tag.find('h3',class_='lister-item-header').find('a')['href'] for tag in movie_divs]
+imgs = [json.loads(BeautifulSoup(requests.get(url).content,'html.parser').find('script', type='application/ld+json').string)['image'] for url in links]
+#End 
 names = [tag.find('h3',class_='lister-item-header').find('a').text for tag in movie_divs]
 # print(names[0])
 
