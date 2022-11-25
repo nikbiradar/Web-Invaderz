@@ -1,11 +1,58 @@
-# Web-Invaderz
+# Cinema A-Z(CS 251)
 
-##Work-Division
-So far is the project progress of Cinema A-Z<br>
-**Web Scraping** (Sabyasachi, Ramswroop) <br>
-**Websites**: IMDB, Rotten Tomatoes, Metacritic <br>
-**Tech-Stack**: Python Requests, Beautiful Soup <br>
-**Front-End** (Sabyasachi, Nikhil) <br>
-**Tech-Stack**: HTML, CSS <br>
-**Back-End** (Nikhil, Sabyasachi) <br>
-**Tech-Stack**: Django, sqlite3 <br>
+![Made with love in India](https://madewithlove.now.sh/in) <br>
+Here, we've build a one stop user-friendly solution which will help the user by giving all the ratings, cast, category/genre, user reviews, and so on given the title of a movie. 
+
+## Packages Installation
+Use the package manager [pip](https://pip.pypa.io/en/stable/)
+```bash
+pip install python
+```
+```bash
+pip install requests
+```
+```bash
+pip install requests-html
+```
+```bash
+pip install bs4
+```
+```bash
+pip install selenium
+```
+```bash
+pip install django
+```
+## Usage
+On Windows, first activate the environment, by running the following command in the project directory where Scripts folder is present
+```bash
+Scripts\activate.bat
+```
+The above is not required for Ubuntu<br>
+Now enter the Cinema folder
+```bash
+cd Cinema
+```
+To run the server
+```bash
+python manage.py runserver
+```
+Now open the url displayed on the terminal, it opens up the server on the browser. Your first see the home page, which woul display you the Top IMDB Movies, Latest Movies and Top Horror Movies. You cannot yet access the Favorite Movies, WatchList and Watched Movies pages, as you aren't signed in.<br>
+Clicking on them would redirect you to the Login Page, SignUp if you are a new User. <br>
+Tada! You are now ready to explore the website <br>
+You can search for a movie from the Search Bar, and it will give you all possible movie suggestions for some entry.<br>
+Clicking on a movie element, will take you into its own page, here you will find all the information related to the movie. You would find
+* Directors, Actors and Cast
+* Language and Genre
+* Running Time
+* Ratings from various platforms(IMDB, Metacritic and Rotten Tomatoes)
+* Plot and Summary 
+* Trailer and Gallery
+* Additional Details(like the BoxOffice, Distributor, etc)
+* User Reviews(Scraped from IMDB and Metacritic)
+* Critic Reviews(Scraped from Rotten Tomatoes)
+* Related Movies
+
+You can add movies to your favorites, watchlist and if you have already watched, you can mark them watched. Based on your favorites, you will get recommendations on your home page. <br>
+
+Happy Movie Binging!
