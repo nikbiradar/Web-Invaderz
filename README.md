@@ -23,6 +23,20 @@ pip install selenium
 ```bash
 pip install django
 ```
+## Database Creation
+We have scraped our data, from top 500 movies on IMDB worldwide, and details about it from different websites like Metacritic and Rotten Tomatoes.
+To do the same, enter the python shell inside the activated environment by using the following command
+```bash
+python manage.py runserver
+```
+We then call our scraping functions defined in extract_data.py and save.py created in the base app
+In the shell type the following
+```python
+from base.extract_data extract *
+extract_all()
+```
+It shall definitely consume heavy time as scraping is now an easy task for sure, and we are scraping 500 movies at once, to scrape a limited number of movies, you can manipulate the arrays in the extract(url) function by slicing it to a smaller size 
+
 ## Usage
 On Windows, first activate the environment, by running the following command in the project directory where Scripts folder is present
 ```bash
