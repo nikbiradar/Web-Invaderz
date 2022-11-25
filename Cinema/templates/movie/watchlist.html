@@ -1,0 +1,53 @@
+{% extends "base/base.html" %}
+
+
+{% block start %}
+    
+    <div class="whole">
+        <div class="third-section">
+            <div class="left-part">
+                <div>
+                    <h2 style="border-bottom: 1px solid blue;">Your WatchList:</h2>
+                    <div>
+                        {%if movies%}
+                        {% for movie in movies%}
+                        <div class="related-movie">
+                            <div class="related-movie-image">
+                                <a href="{% url 'get_movie' movie.slug %}">
+                                    <img src="{{movie.title_image}}" alt=""
+                                    width="100">
+                                </a>
+                            </div>
+                            <div style="width: 150px;">
+                                <a href="{% url 'get_movie' movie.slug %}">
+                                    <h6>{{movie.movie_name}}</h6>
+                                </a>
+                                <p class="related-movie-p">{{movie.release_year}}</p>
+                                <a href="{% url 'del_watch' movie.movie_name %}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16" >
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        {%endfor%}
+                        {%else%}
+                            <center><h1>You didn't added any movie!</h1></center>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    
+
+
+    <div class="footer">
+        <p>Created by Team Web Invaderz&trade;</p>
+        <p style="margin-top: -20;">&copy;Copyright, 2022</p>
+    </div>
+    </div>
+{%endblock%}

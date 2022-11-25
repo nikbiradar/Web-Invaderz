@@ -1,0 +1,354 @@
+{% extends "base/base.html" %}
+
+
+{% block start %}
+<body>
+    <div class="whole">
+    <div style="background-image: linear-gradient(rgba(27, 26, 26, 0.5), rgba(26, 25, 25, 0.5)), url('{{movie.title_image}}');" class="hero-image">
+
+        
+        <div style="display: flex; flex-direction: row;padding: 0px 20px; justify-content: center; padding-bottom: 40; align-items: center;">
+            <div style="float: left; display: block; align-self: flex-start; padding-top: 20;"> 
+                <h1 style="color: #fff; font-size: 28px; font-weight: 600; margin-bottom: 0; margin-top: 0;">{{ movie.movie_name }} <span class="muted">({{ movie.release_year }})</span></h1>
+                <p style="font-size: 14; color: #fff; font-weight: 400; margin-top: 0; margin-bottom: 5;">{{movie.length}}</p>
+                <img src="{{movie.title_image}}" alt="Black Adam" width="212">              
+            </div>
+            <div style="max-width: 300px; margin-top: 30px; color: #ccc; margin-left: 100; padding-top: 20; align-items: flex-start; float: left;">
+                <h1 style="color: #fff; font-size: 24px; font-weight: 400; margin-bottom: 0; margin-top: 0;">{{movie.language}}<span class="muted"></span></h1>
+                <div class="ipc-chip-list__scroller">
+                    {%for genre in movie.category.all%}
+                    <a class="sc-16ede01-3 bYNgQ ipc-chip ipc-chip--on-baseAlt" role="button" tabindex="0" aria-disabled="false" >
+                        <span class="ipc-chip__text" style="font-weight: bold;color:#fff;">{{genre}}</span>
+                    </a>
+                    {%endfor%}
+                    <!-- <a class="sc-16ede01-3 bYNgQ ipc-chip ipc-chip--on-baseAlt" role="button" tabindex="0" aria-disabled="false" href="/search/title?genres=drama&amp;explore=title_type,genres&amp;ref_=tt_ov_inf">
+                        <span class="ipc-chip__text">Comedy</span>
+                    </a>
+                    <a class="sc-16ede01-3 bYNgQ ipc-chip ipc-chip--on-baseAlt" role="button" tabindex="0" aria-disabled="false" href="/search/title?genres=drama&amp;explore=title_type,genres&amp;ref_=tt_ov_inf">
+                        <span class="ipc-chip__text">Action</span>
+                    </a> -->
+                </div>
+                <h2 style="color: #ccc; font-size: 16px; margin-top: 10px;">{{movie.movie_desription}}</h2>
+            </div>
+            <div class="right-section">
+                <div class="user-ratings">
+                    Already watched? 
+                        <a href="{% url 'Add_watched' movie.movie_name %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16" style="margin-left: 5px;color:white">
+                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                              </svg>
+                        </a>
+                </div>
+
+                <div class="ratings"  style="margin-top:20px;">
+                    {%if movie.imdb_rating %}
+                        <span class="imdbicon" title="IMDb"></span> 
+                        {{movie.imdb_rating}}
+                    {%endif%}
+                    {%if movie.meta_rating %}
+                        <span class="metaicon" title="Metacritic"></span> 
+                        {{movie.meta_rating}}%
+                    {%endif%}
+                    {%if movie.rott_rating %}
+                        <span class="rottenicon" title="Rotten Tomatoes"></span> 
+                        {{movie.rott_rating}}% 
+                    {%endif%}
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="second-header-section1">
+
+
+            <div class="main-cast">
+                <ul class="content-meta info">
+                    <li class="meta-row clearfix" data-qa="movie-info-item">
+                        <div class="meta-label subtle" data-qa="movie-info-item-label" style="font-size: 19;color: whitesmoke; border-bottom: 2px solid rgb(251, 3, 3);">Directors:</div>
+                        <div class="meta-value genre" data-qa="movie-info-item-value" style="font-size: 19;">                    
+                          <b>|</b> {%for dir in movie.directors.all %}
+                          {{ dir }} <b>|</b>
+                          {%endfor%}
+                        </div>
+                    </li>
+
+                     <li class="meta-row clearfix" data-qa="movie-info-item">
+                        <div class="meta-label subtle" data-qa="movie-info-item-label" style="font-size: 19;color: whitesmoke; border-bottom: 2px solid rgb(250, 2, 2);justify-self: center;">Casts:</div>
+                        <div class="meta-value" data-qa="movie-info-item-value" style="font-size: 19;">
+                            <b>|</b> {%for cast in movie.cast.all%}
+                            {{cast}} <b>|</b>
+                            {%endfor%}
+                        </div>
+                    </li>
+
+                    <!-- <li class="meta-row clearfix" data-qa="movie-info-item">
+                        <div class="meta-label subtle" data-qa="movie-info-item-label" style="font-size: 19; border-bottom: 1px solid white;">Stars:</div>
+                        <div class="meta-value" data-qa="movie-info-item-value" style="font-size: 19;">
+                            {{movie.stars}}
+                        </div>
+                    </li>  -->
+                </ul>
+            </div>
+
+
+
+            <div class="user-interests">
+                <div class="svg-wrapper">
+                    <svg height="40" width="180" xmlns="http://www.w3.org/2000/svg">
+                        <rect id="shape" height="40" width="150" />
+                        <div id="text">
+                        <a href="{% url 'Add_watchlist' movie.movie_name %}"><span class="spot"></span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                          </svg> Add to Watchlist</a>
+                        </div>
+                    </svg>
+                </div>
+            
+                <div class="svg-wrapper" style="margin-top: 20">
+                    <svg height="40" width="180" xmlns="http://www.w3.org/2000/svg">
+                        <rect id="shape" height="40" width="150" />
+                        <div id="text">
+                        <a href="{% url 'Add_fav_movies' movie.movie_name %}"><span class="spot"></span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                          </svg> Add to Favorites</a>
+                        </div>
+                    </svg>
+                </div> 
+
+                <div style="display: flex; flex-direction:row; margin-top: 20;">
+                    <div style="margin-right: 20px; border-right: 1px solid white; padding-right: 10px;align-self: center;">
+                        <div>
+                            <a href="#reviews" style="text-decoration: none; color: #fff;">Reviews</a>
+                        </div>
+                        <!-- <div>
+                            <a href="" style="text-decoration: none; color: #fff;">Critic Reviews</a>
+                        </div> -->
+                        
+                    </div>
+                    <div>
+                        <div>
+                            <a href="#cast" style="text-decoration: none; color: #fff;">Cast</a>
+                        </div>
+                        <div>
+                            <a href="#gallery" style="text-decoration: none; color: #fff;">Gallery</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="third-section">
+            <div class="left-part">
+                <div class="summary">
+                    <h2 style="border-bottom: 1px solid blue;">Summary</h2>
+                    {%if movie.summary%}
+                    <p>{{movie.summary}}</p>
+                    {%else%}
+                    <p>{{movie.movie_desription}}</p>
+                    {%endif%}
+                </div>
+                <div style="padding: 15px 0px;" id="gallery">
+                    <h2 style="border-bottom: 1px solid blue;">Gallery</h2>
+                    
+                    <div class="gallery">
+                    {%if movie.gallery_images.all%}
+                      {% for image in movie.gallery_images.all %}
+                        <div class="image">
+                            <img src="{{image}}" alt="" width="130">
+                        </div>
+                      {%endfor%}
+                      {%else%}
+                      <div class="image">
+                        <img src="{{movie.title_image}}" alt="" width="130">
+                    </div>
+                    {%endif%}
+                    </div>
+                </div>
+
+                {%if movie.trailer%}
+                <div class="trailer" style="padding: 15px 0px;">
+                    <h2 style="border-bottom: 1px solid blue;">Trailer</h2>
+                    <iframe width="800" height="500" src="{{movie.trailer}}" allowfullscreen></iframe>
+                </div>
+                {%endif%}
+                <div class="movie-onlin" style="padding: 15px 0px;">
+                    <h2 style="border-bottom: 1px solid blue;">Watch Movie</h2>
+                    <p style="margin-bottom: -16px;">Buy Subscription</p>
+                </div>
+                <div style="padding: 15px 0px;" id="cast">
+                    <h2 style="border-bottom: 1px solid blue;">Cast & Crew</h2>
+                    <div class="cast">
+                        {%for actor in movie.cast.all%}
+                        <div class="actor">
+                            <p class="lead">{{actor}}</p>
+                        </div>
+                        {%endfor%}
+                    </div>
+                </div>
+                
+                {%if movie.details.items %}
+                <div class="details" style="padding: 15px 0px;">
+                    <h2 style="border-bottom: 1px solid blue;">Details</h2>
+                    <ul class="content-meta info">
+                        {%for key,value in movie.details.items %}
+                        <li class="meta-row clearfix" data-qa="movie-info-item">
+                            <div class="meta-label subtle" data-qa="movie-info-item-label">{{key}}:</div>
+                            <div class="meta-value genre" data-qa="movie-info-item-value">                    
+                                {{value}}
+                            </div>
+                        </li>
+                        {%endfor%}
+                    </ul>
+                </div>
+                {%endif%}
+
+                <div class="reviews" style="padding: 15px 0px;" id="reviews">
+                    <h2 style="border-bottom: 1px solid blue;">Reviews</h2>
+                    <div class="user-reviews">
+                        <h4>User Reviews</h4>
+                        {% for name,rev in movie.user_reviews_imdb.items %}
+                        {%if rev.less_review%}
+                        <div class="review" style="margin-bottom: 15;">
+                            <div class="review-header">
+                                <div class="review-rate">
+                                    <h3>{{rev.rating}}</h3>
+                                </div>
+                                <div class="review-name" >
+                                    <p class="lead" style="font-weight: bold;">{{rev.name}}</p>
+                                </div>
+                            </div>
+
+                            <div class="review-content">
+                                {%if rev.more_review %}
+                                <p>{{rev.less_review}}<span id='dots'>...</span><span id="more">
+                                    {{rev.more_review}}
+                                </span></p>
+                                <button onclick="myFunction('dots')" id="myBtn">Read more</button>
+                                {%else%}
+                                <p>{{rev.less_review}}</p>
+
+                                {%endif%}
+                            </div>
+                        </div>
+                        {%endif%}
+                        {%endfor%}
+
+                        {% for name,rev in movie.user_reviews_meta.items %}
+                        <div class="review" style="margin-bottom: 15;">
+                            <div class="review-header">
+                                <div class="review-rate">
+                                    <h3>{{rev.meta_score}}</h3>
+                                </div>
+                                <div class="review-name">
+                                    <p class="lead" style="font-weight: bold;">{{rev.author}}</p>
+                                </div>
+                            </div>
+
+                            <div class="review-content">
+                                <p>{{rev.review}}</p>
+                            </div>
+                        </div>
+                        {%endfor%}
+
+                    </div>
+                    {%if movie.reviews.items%}
+                    <div class="critic-reviews">
+                        <h4>Critic Reviews</h4>
+                        {% for name,rev in movie.reviews.items %}
+                        <div class="review" style="margin-bottom: 15;">
+                            <div class="review-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16" style="margin-right:10px;">
+                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                                  </svg>
+                                <div class="review-name">
+                                    <p class="lead" style="font-weight: bold;">{{name}}</p>
+                                </div>
+                            </div>
+
+                            <div class="review-content">
+                                <p>{{rev}}</p>
+                            </div>
+                        </div>
+                        {%endfor%}
+                    </div>
+                    {%endif%}
+                </div>
+
+            </div>
+            <div class="right-part">
+                <h2 style="border-bottom: 2px solid rgb(177, 33, 172);">Related Movies</h2>
+                <div class="related-movies-list">
+                    {%for movie in related_movies%}
+                    <div class="related-movie">
+                        <div class="related-movie-image">
+                            <a href="{% url 'get_movie' movie.slug %}">
+                                <img src="{{movie.title_image}}" alt=""
+                                width="100">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="{% url 'get_movie' movie.slug %}">
+                                <h6>{{movie.movie_name}}</h6>
+                            </a>
+                            <p class="related-movie-p">{{movie.release_year}}</p>
+                            <a href="{% url 'Add_watchlist' movie.movie_name %}" class="related-movie-a">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="black" class="bi bi-plus" viewBox="0 0 16 16">
+                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                            </a>
+                        </div>
+                        
+                    </div>
+                    {%endfor%}
+                </div>
+                
+            </div>
+        </div>
+
+
+        <div class="footer">
+            <p>Created by Team Web Invaderz&trade;</p>
+            <p style="margin-top: -20;">&copy;Copyright, 2022</p>
+        </div>
+    </div>
+    <script>
+        function myFunction(id) {
+          var dots = document.getElementById(id);
+          var moreText = document.getElementById("more");
+          var btnText = document.getElementById("myBtn");
+        
+          if (dots.style.display === "none") {
+            dots.style.display = "inline";
+            btnText.innerHTML = "Read more"; 
+            moreText.style.display = "none";
+          } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "Read less"; 
+            moreText.style.display = "inline";
+          }
+        }
+        </script>
+</body>
+
+<style>
+    .second-header-section1{
+    height: fit-content;
+    background-position: top;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: #fff;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-bottom: 30;
+}
+
+#more{
+    display: none;
+}
+</style>
+{%endblock%}
