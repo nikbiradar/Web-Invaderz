@@ -69,5 +69,4 @@ Clicking on a movie element, will take you into its own page, here you will find
 
 You can add movies to your favorites, watchlist and if you have already watched, you can mark them watched. Based on your favorites, you will get recommendations on your home page. <br>
 
-Happy Movie Binging!"
- https://github.com/nikbiradar/Web-Invaderz/commit/a556c59ce60711c3ea8cae56c51ed48637fef02a#:~:text=%23%20Cinema%20A,Happy%20Movie%20Binging!
+Happy Movie Binging!
